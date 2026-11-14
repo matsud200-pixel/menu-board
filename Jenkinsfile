@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        IMAGE_NAME = "${env.IMAGE_NAME ?: 'YOUR_DOCKERHUB_USER/menu-board'}"
+        IMAGE_NAME = "${env.IMAGE_NAME ?: 'matiasvazquezensing/menu-board'}"
         REGISTRY   = "${env.REGISTRY_URL ?: 'https://index.docker.io/v1/'}"
     }
     stages {
