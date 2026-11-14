@@ -17,7 +17,7 @@ pipeline {
             // (SMOKE_NET set), it is reached by container name over that Docker network instead.
             steps {
                 script {
-                    def net  = env.SMOKE_NET ? "--network ${env.SMOKE_NET}" : ""
+                   def net = "--network smoke-net"
                     def url  = env.SMOKE_NET ? "http://smoke-${BUILD_NUMBER}/" : "http://localhost:18080/"
                     docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").withRun("-p 18080:80 --name smoke-${BUILD_NUMBER} ${net}") { c ->
                         sh "sleep 2; curl -sf -o /dev/null -w 'HTTP %{http_code}\\n' ${url}"
