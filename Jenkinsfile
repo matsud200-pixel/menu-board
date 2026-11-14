@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                    def net = "--network smoke-net"
-                    def url  = env.SMOKE_NET ? "http://smoke-${BUILD_NUMBER}/" : "http://localhost:18080/"
+                def url = "http://smoke-${BUILD_NUMBER}/"
                     docker.image("${IMAGE_NAME}:${BUILD_NUMBER}").withRun("-p 18080:80 --name smoke-${BUILD_NUMBER} ${net}") { c ->
                         sh "sleep 2; curl -sf -o /dev/null -w 'HTTP %{http_code}\\n' ${url}"
                     }
